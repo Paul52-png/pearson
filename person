@@ -1,0 +1,16 @@
+class InvalidAgeError(Exception):
+    def __init__(self, message):
+        self.message = message
+class Person:
+    def __init__(self, name):
+        self.name = name
+        self.age = None
+    def set_age(self, age):
+        if age < 0 or age > 120:
+            raise InvalidAgeError("возраст должен быть от 0 до 120")
+        self.age = age
+try:
+    person = Person("миша")
+    person.set_age(-5)
+except InvalidAgeError as e:
+    print(f"ошибка: {e.message}")
